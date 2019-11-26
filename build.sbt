@@ -21,7 +21,9 @@ libraryDependencies ++= Seq(
   // Optional for auto-derivation of JSON codecs
   "io.circe" %% "circe-generic" % "0.11.1",
   // Optional for string interpolation to JSON model
-  "io.circe" %% "circe-literal" % "0.11.1"
+  "io.circe" %% "circe-literal" % "0.11.1",
+
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 )
 
 scalacOptions ++= Seq("-Ypartial-unification")
