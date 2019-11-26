@@ -23,10 +23,10 @@ case class Hello(user: User)
 
 class MyServer {
 
-  val myHttpRoutes = new MyHttpRoutes
+  //val myHttpRoutes = new MyHttpRoutes
 
-  implicit val cs: ContextShift[IO] = IO.contextShift(global)
-  implicit val timer: Timer[IO] = IO.timer(global)
+  //implicit val cs: ContextShift[IO] = IO.contextShift(global)
+  //implicit val timer: Timer[IO] = IO.timer(global)
 
   implicit def userJsonDecoder: Decoder[User] = new Decoder[User] {
     override def apply(c: HCursor): Result[User] =
@@ -52,28 +52,33 @@ class MyServer {
       Json.obj("hello" ->  hello.user.asJson)
     }
 
-  val jsonApp = HttpRoutes.of[IO] {
-    case req @ POST -> Root / "hello" =>
-      for {
-        // Decode a User request
-        user <- req.as[User]
-        // Encode a hello response
-        resp <- Ok(Hello(user).asJson)
-      } yield (resp)
-  }.orNotFound
+//  val jsonApp = HttpRoutes.of[IO] {
+//    case req @ GET -> Root / "say-hello" / name =>
+//      for {
+//        // Encode a hello response
+//        resp <- Ok(s"thank you $name")
+//      } yield (resp)
+//    case req @ POST -> Root / "hello" =>
+//      for {
+//        // Decode a User request
+//        user <- req.as[User]
+//        // Encode a hello response
+//        resp <- Ok(Hello(user).asJson)
+//      } yield (resp)
+//  }.orNotFound
 
   import org.http4s.server.blaze._
-  val server = BlazeServerBuilder[IO].bindHttp(8080).withHttpApp(jsonApp).resource
-  val fiber = server.use(_ => IO.never).start.unsafeRunSync()
+  //val server = BlazeServerBuilder[IO].bindHttp(8080).withHttpApp(jsonApp).resource
+  //val fiber = server.use(_ => IO.never).start.unsafeRunSync()
 
   /////////////////
-  val services = tweetService <+> myHttpRoutes.helloWorldService
+  //val services = tweetService <+> myHttpRoutes.helloWorldService
   // services: cats.data.Kleisli[[β$0$]cats.data.OptionT[cats.effect.IO,β$0$],org.http4s.Request[cats.effect.IO],org.http4s.Response[cats.effect.IO]] = Kleisli(cats.data.KleisliSemigroupK$$Lambda$20326/1678790828@6a90aeac)
 
-  val httpApp = Router("/" -> myHttpRoutes.helloWorldService, "/api" -> services).orNotFound
+  //val httpApp = Router("/" -> myHttpRoutes.helloWorldService, "/api" -> services).orNotFound
   // httpApp: cats.data.Kleisli[cats.effect.IO,org.http4s.Request[cats.effect.IO],org.http4s.Response[cats.effect.IO]] = Kleisli(org.http4s.syntax.KleisliResponseOps$$Lambda$20337/1801349716@4e861a4e)
 
-  val serverBuilder = BlazeServerBuilder[IO].bindHttp(8081, "localhost").withHttpApp(httpApp)
+  //val serverBuilder = BlazeServerBuilder[IO].bindHttp(8081, "localhost").withHttpApp(httpApp)
   // serverBuilder: org.http4s.server.blaze.BlazeServerBuilder[cats.effect.IO] = org.http4s.server.blaze.BlazeServerBuilder@6940cad7
 
 }

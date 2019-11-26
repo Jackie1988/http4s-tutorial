@@ -14,6 +14,8 @@ import org.http4s.server.blaze.BlazeServerBuilder
 import routes.MyHttpRoutes
 import org.http4s.implicits._
 import cats.implicits._
+import _root_.server.NewService
+
 import scala.concurrent.duration._
 
 class MyClient {
@@ -36,10 +38,12 @@ object Main extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     val client = new MyClient
     val myHttpRoutes = new MyHttpRoutes
+    val myNewService = new NewService
     for {
       f <- BlazeServerBuilder[IO]
             .bindHttp(8080, "localhost")
-            .withHttpApp(myHttpRoutes.helloWorldService.orNotFound)
+            //.withHttpApp(myHttpRoutes.helloWorldService.orNotFound)
+            .withHttpApp(myNewService.myMiddle(myHttpRoutes.helloWorldService.orNotFound))
             .serve
             .compile
             .drain

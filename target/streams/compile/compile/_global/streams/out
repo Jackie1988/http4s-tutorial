@@ -1,7 +1,8 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/JacqHubb/IdeaProjects/http4s-tutorial/src/main/scala/server/MyServer.scala:61:19: ambiguous implicit values:[0m
-[0m[[0m[31merror[0m] [0m[0m both method jsonEncoder in trait CirceInstances of type [F[_]](implicit evidence$9: cats.Applicative[F])org.http4s.EntityEncoder[F,io.circe.Json][0m
-[0m[[0m[31merror[0m] [0m[0m and method circeEntityEncoder in trait CirceEntityEncoder of type [F[_], A](implicit evidence$1: cats.Applicative[F], implicit evidence$2: io.circe.Encoder[A])org.http4s.EntityEncoder[F,A][0m
-[0m[[0m[31merror[0m] [0m[0m match expected type org.http4s.EntityEncoder[cats.effect.IO,io.circe.Json][0m
-[0m[[0m[31merror[0m] [0m[0m        resp <- Ok(Hello(user).asJson)[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/JacqHubb/IdeaProjects/http4s-tutorial/src/main/scala/Main.scala:1:1: [0m
+[0m[[0m[33mwarn[0m] [0m[0mFound names but no class, trait or object is defined in the compilation unit.[0m
+[0m[[0m[33mwarn[0m] [0m[0mThe incremental compiler cannot record the dependency information in such case.[0m
+[0m[[0m[33mwarn[0m] [0m[0mSome errors like unused import referring to a non-existent class might not be reported.[0m
+[0m[[0m[33mwarn[0m] [0m[0m    [0m
+[0m[[0m[33mwarn[0m] [0m[0mimport cats.effect.{ExitCode, IO, IOApp}[0m
+[0m[[0m[33mwarn[0m] [0m[0m^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
